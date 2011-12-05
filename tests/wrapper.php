@@ -80,7 +80,9 @@ class Tests_Wrapper extends Unittest_TestCase {
 		
 		$return = $data->execute();
 		
-		$this->assertTrue( is_array($return) );
+		$this->assertTrue( isset($return[0]['name']) );
+		
+		$this->assertTrue( isset($return[0]['id']) );
 		
 		// Test that it clears
 		
@@ -95,7 +97,7 @@ class Tests_Wrapper extends Unittest_TestCase {
 		$this->assertEquals( $dump['invalidate'], FALSE );
 	}
 	
-	public function testDoesItInvalidate()
+	public function testDoesItOnlyInvalidateOnInvalidate()
 	{
 		$data = $this->_facebook->query("/123456?fields=friends")->set_table('user')->execute();
 		
